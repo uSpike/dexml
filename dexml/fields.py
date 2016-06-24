@@ -338,8 +338,12 @@ class CDATA(Value):
 
 class Integer(Value):
     """Field representing a simple integer value."""
+    def __init__(self,base=10,**kwds):
+        super(Integer,self).__init__(**kwds)
+        self.base = base
+
     def parse_value(self,val):
-        return int(val)
+        return int(val, self.base)
 
 
 class Float(Value):
